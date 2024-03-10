@@ -1,0 +1,8 @@
+asm volatile("1:\n"
+              "movq (%%rsi), %%rsi\n"
+              "movzx (%%rcx), %%rax\n"
+              "shl $12, %%rax\n"
+              "jz 1b\n"
+              "movq (%%rbx,%%rax,1), %%rbx\n"
+              : "c"(phys), "b"(mem), "S"(0)
+              : "rax")
